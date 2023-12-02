@@ -1,0 +1,122 @@
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background: linear-gradient(90deg, rgba(125,128,123,1) 0%, rgba(85,207,203,1) 0%, rgba(68,84,87,1) 100%, rgba(25,36,38,1) 100%, rgba(56,75,79,1) 100%);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-to-be-done, .main-list {
+   background-color: #fff;
+   padding: 20px;
+   border: none;
+   border-radius: 5px;
+   margin-bottom: 50px;
+   margin-top: 20px;
+}
+
+.main-list {
+  width: 390px;
+}
+.main-list #list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid lightgray;
+  font-size: 1.5rem;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 1px;
+  color: rgb(35, 35, 35);
+  cursor: pointer;
+}
+
+.main-list #list li button {
+  background: linear-gradient(90deg, rgb(204, 207, 202) 0%, rgba(85,207,203,1) 0%, rgb(176, 226, 235) 100%, rgb(114, 163, 172) 100%, rgb(100, 137, 145) 100%);
+  border: none;
+  border-radius: 5px;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+
+
+
+.task-to-be-done input, .comment-container input {
+  color: rgb(117, 116, 116);
+  padding: 8px 10px;
+  width: 250px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  outline: none;
+}
+
+.task-to-be-done input:active, .task-to-be-done input:focus, .comment-container input:active, .comment-container input:focus {
+  border: 2px solid rgb(2, 201, 2);
+}
+
+.task-to-be-done input::placeholder {
+  font-size: 1.5rem;
+  color: rgb(133, 130, 130);
+}
+
+.task-to-be-done button, .comment-container button {
+  background: linear-gradient(90deg, rgba(125,128,123,1) 0%, rgba(85,207,203,1) 0%, rgba(68,84,87,1) 100%, rgba(25,36,38,1) 100%, rgba(56,75,79,1) 100%);
+  color: #fff;
+  padding: 8px 20px;
+  margin-left: 30px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.containers {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.comment-container {
+  background: transparent;
+  width: 400px;
+  padding: 20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 10px #fff;
+  border-radius: 10px;
+}
+
+.comment-container h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.comments-list {
+  color: #fff;
+  margin-top: 15px;
+  margin-left: 10px;
+  font-size: 2rem;
+  font-style: italic;
+
+}
+
