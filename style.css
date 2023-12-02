@@ -1,3 +1,22 @@
+@keyframes appear { 
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 *, *::after, *::before {
   padding: 0;
   margin: 0;
@@ -26,8 +45,17 @@ body {
    margin-top: 20px;
 }
 
-.main-list {
-  width: 390px;
+.main-list, .task-to-be-done {
+  width: 270px;
+}
+
+@media screen and (min-width: 450px) {
+  .main-list, .task-to-be-done {
+    width: 390px;
+  }
+  #forUser, .comment-container #comment-input{
+    width: 250px;
+  }
 }
 .main-list #list li {
   display: flex;
@@ -54,10 +82,10 @@ body {
 
 
 
-.task-to-be-done input, .comment-container input {
+.task-to-be-done input, #comment-input {
   color: rgb(117, 116, 116);
   padding: 8px 10px;
-  width: 250px;
+  width: 130px;
   border: 1px solid lightgray;
   border-radius: 4px;
   outline: none;
@@ -72,7 +100,7 @@ body {
   color: rgb(133, 130, 130);
 }
 
-.task-to-be-done button, .comment-container button {
+.task-to-be-done button, .comment-container button, #remove-button, #edit-button {
   background: linear-gradient(90deg, rgba(125,128,123,1) 0%, rgba(85,207,203,1) 0%, rgba(68,84,87,1) 100%, rgba(25,36,38,1) 100%, rgba(56,75,79,1) 100%);
   color: #fff;
   padding: 8px 20px;
@@ -96,9 +124,9 @@ body {
 
 .comment-container {
   background: transparent;
-  width: 400px;
+  width: auto;
   padding: 20px;
-  margin-right: 10px;
+  margin-left: 20px;
   margin-bottom: 20px;
   box-shadow: 0px 0px 10px #fff;
   border-radius: 10px;
@@ -112,11 +140,37 @@ body {
 }
 
 .comments-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: #fff;
+  padding: 10px;
   margin-top: 15px;
   margin-left: 10px;
   font-size: 2rem;
   font-style: italic;
-
+  animation: appear 1s ease-in-out;
 }
+
+.comment-container {
+  animation: appear 1s ease-in-out;
+}
+
+#remove-button {
+  background: linear-gradient(90deg, rgba(125,128,123,1) 0%, rgba(255,0,0,1) 0%, rgba(107,84,98,1) 100%, rgba(165,85,114,1) 100%, rgba(68,84,87,1) 100%, rgba(25,36,38,1) 100%, rgba(255,0,0,1) 100%);
+}
+
+#edit-button {
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(0,0,0,1) 100%);
+}
+
+#span-el-for-buttons {
+  display: flex;
+}
+
+.animation-disappear {
+  animation: disappear 1s ease-out;
+}
+
+
 

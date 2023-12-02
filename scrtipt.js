@@ -34,15 +34,19 @@ function addToList() {
     changeElementStyle(newSpan);
   });
 
+  const spanTexts = Array.from(document.querySelectorAll("#list span")).map(span => span.innerText);
+  localStorage.setItem("spanTexts", JSON.stringify(spanTexts));
+
   createContainerToCommentThing();
 
   inputEl.value = "";
+
+  function removeElement() {
+    let listItem = this.parentNode;
+    list.removeChild(listItem);
+  }
 }
 
-function removeElement() {
-  let listItem = this.parentNode;
-  list.removeChild(listItem);
-}
 
 function changeElementStyle(el) {
   el.classList.toggle("line-through");
@@ -71,16 +75,51 @@ const createContainerToCommentThing = () => {
     container.appendChild(ulList);
     const liComments = document.createElement("li");
     liComments.classList.add("comments-list");
-   
-    if (inputCommentEl.value === '') {
-      alert("Pole nie moze być puste");
+    const spanElement = document.createElement("span");
+    const editButton = document.createElement("button");
+    const spanElForButtons = document.createElement("span");
+    spanElForButtons.id = "span-el-for-buttons";
+    editButton.id = "edit-button";
+    editButton.innerHTML = "Edit"
+    const removeListElementButton = document.createElement("button");
+    removeListElementButton.id = "remove-button";
+    removeListElementButton.innerHTML = "Remove";
+    liComments.appendChild(spanElement);
+    liComments.append(spanElForButtons)
+    spanElForButtons.appendChild(editButton);
+    spanElForButtons.appendChild(removeListElementButton);
+  
+    if (inputCommentEl.value === "") {
+      alert("Pole nie może być puste");
       return;
     } else {
       ulList.appendChild(liComments);
-      liComments.innerHTML = inputCommentEl.value;
+      spanElement.innerHTML = inputCommentEl.value;
     }
-    inputCommentEl.value = ''
-  }
+    inputCommentEl.value = "";
+
+    const editComment = () => {
+      const editByPrompt = prompt("Edytuj tekst");
+
+      if (editByPrompt !== '') {
+        spanElement.innerText = editByPrompt;
+      } else {
+        return;
+      }
+    }
+
+    const removeComment = () => {
+      liComments.classList.add("animation-disappear");
+
+      setTimeout(() => {
+        liComments.remove();
+      },1000); 
+    }
+
+    removeListElementButton.addEventListener("click", removeComment);
+    editButton.addEventListener("click", editComment);
+  };
+  
   
 
   inputCommentEl.addEventListener("keyup", (event) => {
@@ -90,6 +129,16 @@ const createContainerToCommentThing = () => {
   })
   buttonAddComment.addEventListener("click", addComment);
 }
+
+
+function saveToLocalStorage() {
+  const containersData = divContainers.innerHTML;
+  localStorage.setItem("containersData", containersData);
+
+  const spanTexts = Array.from(document.querySelectorAll("#list span")).map(span => span.innerText);
+  localStorage.setItem("spanTexts", JSON.stringify(spanTexts));
+}
+
 
 
 
