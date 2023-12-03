@@ -9,6 +9,13 @@ inputEl.addEventListener("keyup", (event) => {
   }
 });
 
+const darkModeButton = document.getElementById("dark-mode-icon");
+const body = document.body;
+
+darkModeButton.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+})
+
 function saveToLocalStorage() {
 
   const containersData = [];
@@ -59,6 +66,23 @@ function addToList() {
 
 addBtn.addEventListener("click", addToList);
 
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll(".comments-list:not(.dragging)")];
+
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
+
 // Funkcja tworząca kontener z komentarzami
 const createContainerToCommentThing = (h1Text) => {
   const container = document.createElement("div");
@@ -99,6 +123,7 @@ const createContainerToCommentThing = (h1Text) => {
     container.appendChild(ulList);
     const liComments = document.createElement("li");
     liComments.classList.add("comments-list");
+    liComments.draggable = true;
     const spanElement = document.createElement("span");
     const editButton = document.createElement("button");
     const spanElForButtons = document.createElement("span");
@@ -113,6 +138,27 @@ const createContainerToCommentThing = (h1Text) => {
     spanElForButtons.appendChild(editButton);
     spanElForButtons.appendChild(removeListElementButton);
 
+    liComments.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", ""); // Wymagane dla przeciągania w Firefox
+      e.target.classList.add("dragging");
+    });
+    
+    liComments.addEventListener("dragend", (e) => {
+      e.target.classList.remove("dragging");
+      saveToLocalStorage();
+    });
+    
+    container.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const afterElement = getDragAfterElement(container, e.clientY);
+      const draggable = document.querySelector(".dragging");
+      if (afterElement == null) {
+        container.appendChild(draggable);
+      } else {
+        container.insertBefore(draggable, afterElement);
+      }
+    });
+
     if (inputCommentEl.value === "") {
       alert("Pole nie może być puste");
       return;
@@ -121,7 +167,11 @@ const createContainerToCommentThing = (h1Text) => {
       spanElement.innerHTML = inputCommentEl.value;
     }
     inputCommentEl.value = "";
-    saveToLocalStorage()
+    saveToLocalStorage();
+
+    spanElement.addEventListener("click", () => {
+      spanElement.classList.toggle("line-through");
+    });
 
     // Funkcja edytująca komentarze
     const editComment = () => {

@@ -37,10 +37,11 @@ body {
 }
 
 .task-to-be-done {
-   background-color: #ffffffa3;
-   padding: 20px;
+   background-color: transparent;
+   padding: 50px 20px;
    border: none;
    border-radius: 5px;
+   box-shadow: 0px 0px 15px #575757;
    margin-bottom: 50px;
    margin-top: 20px;
 }
@@ -50,28 +51,37 @@ body {
 }
 
 @media screen and (min-width: 450px) {
-
+  .task-to-be-done {
+    width: 390px;
+  }
   #forUser, .comment-container #comment-input{
-    width: 250px;
+    width: 245px;
+  }
+  .comment-container h1 {
+    display: flex;
+    justify-content: center;
   }
 }
 
 .task-to-be-done input, #comment-input {
-  color: rgb(117, 116, 116);
+  background-color: transparent;
+  color: #fff;
   padding: 8px 10px;
   width: 130px;
-  border: 1px solid lightgray;
+  border: none;
   border-radius: 4px;
+  box-shadow: 0px 0px 5px #fff;
   outline: none;
+  font-size: 18px;
 }
 
-.task-to-be-done input:active, .task-to-be-done input:focus, .comment-container input:active, .comment-container input:focus {
+.task-to-be-done input:active, .task-to-be-done input:focus, .comment-container #comment-input:active, .comment-container #comment-input:focus {
   border: 2px solid rgb(2, 201, 2);
 }
 
 .task-to-be-done input::placeholder {
   font-size: 1.5rem;
-  color: rgb(133, 130, 130);
+  color: rgb(255, 255, 255);
 }
 
 .task-to-be-done button, .comment-container button, #remove-button, #edit-button {
@@ -81,7 +91,7 @@ body {
   margin-left: 30px;
   border: none;
   border-radius: 4px;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -107,7 +117,7 @@ body {
 }
 
 .comment-container h1 {
-  text-align: center;
+  text-align: left;
   margin-bottom: 10px;
   font-size: 20px;
   color: #fff;
@@ -124,6 +134,10 @@ body {
   font-size: 2rem;
   font-style: italic;
   animation: appear 1s ease-in-out;
+}
+
+.comments-list span {
+  cursor: pointer;
 }
 
 .comment-container {
@@ -159,5 +173,17 @@ body {
   animation: disappear 1s ease-out;
 }
 
+.dark-mode {
+  background: linear-gradient(90deg, rgba(125,128,123,1) 0%, rgba(52,61,61,1) 40%, rgba(25,36,38,1) 55%);
+}
+
+#dark-mode-icon {
+  color: #fff;
+  position: absolute;
+  font-size: 40px;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
 
 
