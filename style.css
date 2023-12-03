@@ -36,8 +36,8 @@ body {
   align-items: center;
 }
 
-.task-to-be-done, .main-list {
-   background-color: #fff;
+.task-to-be-done {
+   background-color: #ffffffa3;
    padding: 20px;
    border: none;
    border-radius: 5px;
@@ -45,42 +45,16 @@ body {
    margin-top: 20px;
 }
 
-.main-list, .task-to-be-done {
+.task-to-be-done {
   width: 270px;
 }
 
 @media screen and (min-width: 450px) {
-  .main-list, .task-to-be-done {
-    width: 390px;
-  }
+
   #forUser, .comment-container #comment-input{
     width: 250px;
   }
 }
-.main-list #list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 10px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid lightgray;
-  font-size: 1.5rem;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  letter-spacing: 1px;
-  color: rgb(35, 35, 35);
-  cursor: pointer;
-}
-
-.main-list #list li button {
-  background: linear-gradient(90deg, rgb(204, 207, 202) 0%, rgba(85,207,203,1) 0%, rgb(176, 226, 235) 100%, rgb(114, 163, 172) 100%, rgb(100, 137, 145) 100%);
-  border: none;
-  border-radius: 5px;
-  padding: 4px 6px;
-  cursor: pointer;
-}
-
-
-
 
 .task-to-be-done input, #comment-input {
   color: rgb(117, 116, 116);
@@ -166,6 +140,19 @@ body {
 
 #span-el-for-buttons {
   display: flex;
+}
+
+.div-h1-position {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.div-h1-position #delete-button {
+  background: rgb(199, 16, 16);
+  color: #fff;
+  position: absolute;
+  top: -5px;
+  right: -10px;
 }
 
 .animation-disappear {
